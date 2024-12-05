@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Actor List</title>
+</head>
+<body>
+    <header>
+        <h1>Actor List</h1>
+    </header>
+    <div class="container">
+        {% for actor in actors %}
+            <div class="card">
+                <h2>{{ actor.name }}</h2>
+                <p>Date of Birth: {{ actor.date_of_birth }}</p>
+                <p>Number of Movies: {{ actor.movieactorrelation_set.count }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <footer>
+        <p>&copy; 2024 Movie App</p>
+    </footer>
+</body>
+</html>

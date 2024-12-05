@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Movie List</title>
+</head>
+<body>
+    <header>
+        <h1>Movie List</h1>
+    </header>
+    <div class="container">
+        <div class="sort-links">
+            <a href="?sort_by=title">Sort by Title</a>
+            <a href="?sort_by=release_date">Sort by Release Date</a>
+        </div>
+        {% for movie in movies %}
+            <div class="card">
+                <h2>{{ movie.title }}</h2>
+                <p>{{ movie.description }}</p>
+                <p>Release Date: {{ movie.release_date }}</p>
+                <p>Number of Actors: {{ movie.movieactorrelation_set.count }}</p>
+                <button><a href="{% url 'upvote_movie' movie.id %}">Upvote</a></button>
+                <button><a href="{% url 'downvote_movie' movie.id %}">Downvote</a></button>
+                <p>Votes: Upvotes ({{ movie.upvotes }}), Downvotes ({{ movie.downvotes }})</p>
+            </div>
+        {% endfor %}
+    </div>
+    <footer>
+        <p>&copy; 2024 Movie App</p>
+    </footer>
+</body>
+</html>
